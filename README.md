@@ -17,7 +17,25 @@ Afin de modifier le logo de l'application, on commence par télécharger l'icone
 ## Question 3. 
 Lorsque le login est réussi, vous êtes censé chaîner une autre Activity en utilisant un Intent. Si je presse le bouton "Back" de l'interface Android, que puis-je constater ? Comment faire pour que l'application se comporte de manière plus logique ?
 
-Un clique sur le bouton back quitte l'application. Quand on la relance, on retourne sur l'activité de login. Ce qu'on voudrait c'est que l'application se mette en 
+Un clique sur le bouton back quitte l'application. Quand on la relance, on retourne sur l'activité de login. Ce qu'on voudrait c'est que l'application se mette en arrière plan ou simpllement que le bouton back ne fasse rien.
+Pour que l'application se mette en arrière plan il faut rajouter le code suivant à l'activité:
+
+```
+@Override
+public void onBackPressed() {
+    moveTaskToBack(true);
+}
+```
+
+Et pour que le bouton back ne fasse rien, il faut rajouter ce code : 
+
+```
+@Override
+public void onBackPressed() 
+{
+   // Your Code Here. Leave empty if you want nothing to happen on back press.
+}
+```
 
 ## Question 4. 
 On pourrait imaginer une situation où cette seconde Activity fournit un résultat (par exemple l’IMEI ou une autre chaîne de caractères) que nous voudrions récupérer dans l'Activity de départ. Comment procéder ?
