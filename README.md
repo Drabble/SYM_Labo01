@@ -3,7 +3,7 @@
 ## Question 1. 
 Comment organiser les textes pour obtenir une application multi-langues (français, allemand, italien, anglais, langue par défaut : anglais) ?
 
-Dans le dossier values, il faut créer des fichiers xml contenant des strings en utilisant l'assistant de création et ajouter le qualifier "locale en choisissant la langue.
+Dans le dossier values, il faut créer des fichiers xml contenant des strings en utilisant l'assistant de création et ajouter le qualifier "local" en choisissant la langue.
 On peut créer autant de fichier qu'on veut pour chaque langue/région et même changer le texte en fonction de l'orientation de l'écran ou autre en utilisant les qualifiers.
 Android va toujours choisir la traduction la plus spécifique possible pour l'appareil utilisé.
 Le fichiers strings.xml est le fichier par défault et sera utilisé quand aucun autre language correspond. 
@@ -17,7 +17,7 @@ Afin de modifier le logo de l'application, on commence par télécharger l'icone
 ## Question 3. 
 Lorsque le login est réussi, vous êtes censé chaîner une autre Activity en utilisant un Intent. Si je presse le bouton "Back" de l'interface Android, que puis-je constater ? Comment faire pour que l'application se comporte de manière plus logique ?
 
-????????'
+Un clique sur le bouton back quitte l'application. Quand on la relance, on retourne sur l'activité de login. Ce qu'on voudrait c'est que l'application se mette en 
 
 ## Question 4. 
 On pourrait imaginer une situation où cette seconde Activity fournit un résultat (par exemple l’IMEI ou une autre chaîne de caractères) que nous voudrions récupérer dans l'Activity de départ. Comment procéder ?
