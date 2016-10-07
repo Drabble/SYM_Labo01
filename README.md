@@ -40,12 +40,39 @@ public void onBackPressed()
 ## Question 4. 
 On pourrait imaginer une situation où cette seconde Activity fournit un résultat (par exemple l’IMEI ou une autre chaîne de caractères) que nous voudrions récupérer dans l'Activity de départ. Comment procéder ?
 
-On peut set des propriétés de l'application en local.
+On a plusieurs possibilités. On peut utiliser les SharedPreferences pour sauvegarder la valeur calculée sur le téléphone. On peut aussi utiliser la méthode setResult qui permet d'envoyer un résultat à l'activité.  
+
+Dans l'activité principale, on crée une nouvelle activité.
+```
+Intent i = new Intent(this,  Activity2.class);
+startActivityForResult(i, 1);
+```
+
+Dans l'activité crée on calcule la valeur, on la met dans un intent qu'on retourne à l'activité principale.
+```
+Intent intent = new Intent();
+intent.putExtra("edittextvalue","value_here")
+setResult(RESULT_OK, intent);        
+finish();
+```
+
+Dans l'activité principale on récupère le résultat.
+```
+public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == 1) {
+         if(resultCode == RESULT_OK){
+             String stredittext=data.getStringExtra("edittextvalue");
+         }     
+    }
+} 
+```
 
 ## Question 5. 
 Dans l’activité de login, en plaçant le téléphone (ou l’émulateur) en mode paysage (landscape), nous constatons que les 2 champs de saisie ainsi que le bouton s’étendent sur toute la largeur de l’écran. Veuillez réaliser un layout spécifique au mode paysage qui permet un affichage mieux adapté et indiquer comment faire pour qu’il soit utilisé à l’exécution. 
-SYM – Systèmes mobiles Enseignant: Fabien Dutoit 5 / 5 
-Assistant: Dominique Jollien
+SYM – Systèmes mobiles Enseignant:  
+Fabien Dutoit 5 / 5  
+Assistant: Dominique Jollien  
 
 
 ## Question 6. 
