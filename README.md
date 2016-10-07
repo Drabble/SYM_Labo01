@@ -17,7 +17,21 @@ Afin de modifier le logo de l'application, on commence par télécharger l'icone
 ## Question 3. 
 Lorsque le login est réussi, vous êtes censé chaîner une autre Activity en utilisant un Intent. Si je presse le bouton "Back" de l'interface Android, que puis-je constater ? Comment faire pour que l'application se comporte de manière plus logique ?
 
-Un clique sur le bouton back quitte l'application. Quand on la relance, on retourne sur l'activité de login. Ce qu'on voudrait c'est que l'application se mette en arrière plan ou simpllement que le bouton back ne fasse rien.
+Quand on clique sur le bouton back, l'application se ferme. Ceci est dû à ce bout de code dans l'activité principale.
+
+```
+Intent intent = new Intent(MainActivity.this, SuccessActivity.class);
+intent.putExtra(SuccessActivity.emailEntered, mail);
+intent.putExtra(SuccessActivity.passwordGiven, passwd);
+startActivity(intent);
+
+Toast.makeText(MainActivity.this, getResources().getString(R.string.good), Toast.LENGTH_LONG).show();
+finish();
+```
+
+On voit que dans la dernière ligne on tue l'activité principale, ce qui fait que quand on clique sur back dans la deuxième activité, on arrête la deuxième activité et comme l'activité principale a été terminée on quitte l'application. Si l'on enlève ce finish(), quand on clique sur back on retournera sur l'activité principale.
+
+Ce qu'on voudrait c'est que l'application se mette en arrière plan ou simplement que le bouton back ne fasse rien.
 Pour que l'application se mette en arrière plan il faut rajouter le code suivant à l'activité:
 
 ```
