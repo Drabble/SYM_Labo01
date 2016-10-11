@@ -51,11 +51,52 @@ public class MainActivity extends AppCompatActivity {
 	private EditText password      = null;
     private Button   signIn     = null;
 
+	/*Cette méthode est appélé quand l'activité n'est plus visible par
+	* le user et tourne en background. Dans cette exemple, lorsque le user
+	* sera authentifié, cette activité va tourner en background et ainsi
+	* la methéde onPause sera appélé juste avant de quitter l'écran.
+	*/
+	@Override
+	protected void onPause() {
+		super.onPause();
+		Toast.makeText(MainActivity.this, "The main activity goes on pause...", Toast.LENGTH_LONG).show();
+	}
+
+	/*Cette méthode est appélée 1 milliseconde après que l'activité ira en
+	* backgroung.Par conséquent elle sera exécuté juste après l'exécution de
+	* la méthode OnPause().
+	*/
+	@Override
+	protected void onStop() {
+		super.onStop();
+		Toast.makeText(MainActivity.this, "The main activity stops just after goes on pause...", Toast.LENGTH_LONG).show();
+	}
+
+	/*Cette méthode est appélé quand l'activité principale est lancé et visible
+	* par le user. D'abord le méthode onCreate() sera exécutée, ensuite cette
+	* méthode. Elle sera aussi exécutée dès que l'activité est reprise par le
+	* user aprés une pause (onPause()).
+	* */
+	@Override
+	protected void onStart() {
+		super.onStart();
+		Toast.makeText(MainActivity.this, "The main activity starts...", Toast.LENGTH_LONG).show();
+	}
+
+    /*De même que onStart, cette méthode est appélée lorsque l'activité principale
+    * est lancée et visible à l'écran. Elle est exécuté après la méthode onStart.
+    */
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Toast.makeText(MainActivity.this, "OnResume is called after the call of onStart...", Toast.LENGTH_LONG).show();
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 		// Show the welcome screen / login authentication dialog
-		setContentView(R.layout.authent);
+		setContentView(R.layout.authen_relative_layout);
 
 		// Link to GUI elements
         this.email      = (EditText) findViewById(R.id.email);
