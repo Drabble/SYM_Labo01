@@ -84,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
 	}
 
     /*De même que onStart, cette méthode est appélée lorsque l'activité principale
-    * est lancée et visible à l'écran. Elle est exécuté après la méthode onStart.
+    * est lancée et visible à l'écran. Elle est exécuté après la méthode onStart. Elle est également
+    * lancée quand on retourne sur l'activité (après un onPause).
     */
 	@Override
 	protected void onResume() {
