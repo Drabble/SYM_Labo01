@@ -84,9 +84,8 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 ## Question 5. 
 Dans l’activité de login, en plaçant le téléphone (ou l’émulateur) en mode paysage (landscape), nous constatons que les 2 champs de saisie ainsi que le bouton s’étendent sur toute la largeur de l’écran. Veuillez réaliser un layout spécifique au mode paysage qui permet un affichage mieux adapté et indiquer comment faire pour qu’il soit utilisé à l’exécution. 
-SYM – Systèmes mobiles Enseignant:  
-Fabien Dutoit 5 / 5  
-Assistant: Dominique Jollien  
+
+Afin de changer le layout en mode paysage, il faut faire un clique droit dans le dossier /res/layout et créer un nouveau layout, il faut ensuite lui donner le même nom que le layout auquel on veut ajouter le landscape et dans l'utilitaire de création, il faut ajouter le qualifier d'orientation et selectionner landscape. On devrait maintenant pouvoir mettre l'écran on mode landscape et voir le deuxième template être utilisé.
 
 
 ## Question 6. 
@@ -96,6 +95,9 @@ Le layout de l’interface utilisateur de l’activité de login qui vous a ét�
 ## Question 7. 
 Implémenter dans votre code les méthodes onCreate(), onStart(), onResume(), onPause(), onStop(), etc... qui marquent le cycle de vie d'une application Android, et tracez leur exécution. Décrivez brièvement à quelles occasions ces méthodes sont invoquées. Si vous aviez (par exemple) une connexion Bluetooth (ou des connexions bases de données, ou des capteurs activés) ouverte dans votre Activity, que faudrait-il peut-être faire, à votre avis (nous ne vous demandons pas de code ici) ?
 
+Les explications quant à l'invocation des méthodes est décrite dans la javadoc de l'application.
+
+Dans le cas de l'utilisation de base de données, on voudrait par exemple ouvrir la connection à la base de données dans le onStart et arrêter la connection dans le onStop. Avec des capteurs, ou aussi avec la base de données, on voudra peut-être démarrer le capteur dans le onResume et l'arrêter dans le cas d'un onPause.
 
 ## Question 8.
 Facultatif, s’il vous reste du temps, nous vous conseillons de le consacrer à mettre en place la résolution
