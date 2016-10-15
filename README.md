@@ -95,7 +95,7 @@ Le layout de l’interface utilisateur de l’activité de login qui vous a ét�
 
 ## Question 7. 
 Implémenter dans votre code les méthodes onCreate(), onStart(), onResume(), onPause(), onStop(), etc... qui marquent le cycle de vie d'une application Android, et tracez leur exécution. Décrivez brièvement à quelles occasions ces méthodes sont invoquées. Si vous aviez (par exemple) une connexion Bluetooth (ou des connexions bases de données, ou des capteurs activés) ouverte dans votre Activity, que faudrait-il peut-être faire, à votre avis (nous ne vous demandons pas de code ici) ?
-
+Avec une connexion bleutooth dans notre activité, tout d'abord nous devons ouvrir la connexion bleutooth lors de l'appel des méthode onCreate() ou onStart() afin de permettre par exemple à d'autres mobiles de communiquer avec notre activité. Ensuite lorsque l'activité n'est plus visible par l'utilisateur, nous devons enregistrer son état, couper la connexion dans la méthode onPause().Enfin lorsque l'activité sera à nouveau reprise, nous allons restaurer son état et établir une nouvelle connexion dans la méthode onResume().  
 
 ## Question 8.
 Facultatif, s’il vous reste du temps, nous vous conseillons de le consacrer à mettre en place la résolution
