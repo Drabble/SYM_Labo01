@@ -99,6 +99,8 @@ Les explications quant à l'invocation des méthodes est décrite dans la javado
 
 Dans le cas de l'utilisation de base de données, on voudrait par exemple ouvrir la connection à la base de données dans le onStart et arrêter la connection dans le onStop. Avec des capteurs, ou aussi avec la base de données, on voudra peut-être démarrer le capteur dans le onResume et l'arrêter dans le cas d'un onPause.
 
+Avec une connexion bleutooth dans notre activité, tout d'abord nous devons ouvrir la connexion bleutooth lors de l'appel des méthode onCreate() ou onStart() afin de permettre par exemple à d'autres mobiles de communiquer avec notre activité. Ensuite lorsque l'activité n'est plus visible par l'utilisateur, nous devons enregistrer son état, couper la connexion dans la méthode onPause().Enfin lorsque l'activité sera à nouveau reprise, nous allons restaurer son état et établir une nouvelle connexion dans la méthode onResume().  
+
 ## Question 8.
 Facultatif, s’il vous reste du temps, nous vous conseillons de le consacrer à mettre en place la résolution
 des permissions au runtime
