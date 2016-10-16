@@ -1,5 +1,8 @@
 # SYM Labo 1
 
+## Auteurs
+Antoine Drabble & Patrick Djomo
+
 ## Question 1. 
 Comment organiser les textes pour obtenir une application multi-langues (français, allemand, italien, anglais, langue par défaut : anglais) ?
 
