@@ -139,7 +139,6 @@ Implémenter dans votre code les méthodes onCreate(), onStart(), onResume(), on
 
 Les explications quant à l'invocation des méthodes de l'image ci-dessous est décrite dans la javadoc de l'application.
 
-Inline-style: 
 ![activity lifecycle](http://i.stack.imgur.com/IbhGg.png "Activity lifecycle")
 
 Dans le cas de l'utilisation de base de données, on voudrait par exemple ouvrir la connection à la base de données dans le onStart et arrêter la connection dans le onStop. Avec des capteurs, ou aussi avec la base de données, on voudra peut-être démarrer le capteur dans le onResume et l'arrêter dans le cas d'un onPause.
