@@ -51,48 +51,6 @@ public class MainActivity extends AppCompatActivity {
 	private EditText password      = null;
     private Button   signIn     = null;
 
-	/*Cette méthode est appélé quand l'activité n'est plus visible par
-	* le user et tourne en background. Dans cette exemple, lorsque le user
-	* sera authentifié, cette activité va tourner en background et ainsi
-	* la methéde onPause sera appélé juste avant de quitter l'écran.
-	*/
-	@Override
-	protected void onPause() {
-		super.onPause();
-		Toast.makeText(MainActivity.this, "The main activity goes on pause...", Toast.LENGTH_LONG).show();
-	}
-
-	/*Cette méthode est appélée 1 milliseconde après que l'activité ira en
-	* backgroung.Par conséquent elle sera exécuté juste après l'exécution de
-	* la méthode OnPause().
-	*/
-	@Override
-	protected void onStop() {
-		super.onStop();
-		Toast.makeText(MainActivity.this, "The main activity stops just after goes on pause...", Toast.LENGTH_LONG).show();
-	}
-
-	/*Cette méthode est appélé quand l'activité principale est lancé et visible
-	* par le user. D'abord le méthode onCreate() sera exécutée, ensuite cette
-	* méthode. Elle sera aussi exécutée dès que l'activité est reprise par le
-	* user aprés une pause (onPause()).
-	* */
-	@Override
-	protected void onStart() {
-		super.onStart();
-		Toast.makeText(MainActivity.this, "The main activity starts...", Toast.LENGTH_LONG).show();
-	}
-
-    /*De même que onStart, cette méthode est appélée lorsque l'activité principale
-    * est lancée et visible à l'écran. Elle est exécuté après la méthode onStart. Elle est également
-    * lancée quand on retourne sur l'activité (après un onPause).
-    */
-	@Override
-	protected void onResume() {
-		super.onResume();
-		Toast.makeText(MainActivity.this, "OnResume is called after the call of onStart...", Toast.LENGTH_LONG).show();
-	}
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,9 +74,12 @@ public class MainActivity extends AppCompatActivity {
 				String mail = email.getText().toString();
 				String passwd = password.getText().toString();
 
+				// Check if the email is correct
 				if(mail.indexOf("@") <= 0){
+					// Show invalid email toast
 					Toast.makeText(MainActivity.this, getResources().getString(R.string.invalidEmail), Toast.LENGTH_LONG).show();
 				}
+				// Check if the login password is correct
 				else if (isValid(mail, passwd)) {
 					/* Ok, valid combination, do something or launch another activity...
 					 * The current activity could be finished, but it is not mandatory.
@@ -136,16 +97,20 @@ public class MainActivity extends AppCompatActivity {
 					 * But just display a small message before quitting...
 					 */
 
+					// Start new activity
 					Intent intent = new Intent(MainActivity.this, SuccessActivity.class);
 					intent.putExtra(SuccessActivity.emailEntered, mail);
 					intent.putExtra(SuccessActivity.passwordGiven, passwd);
 					startActivity(intent);
 
+					// Show success toast
 					Toast.makeText(MainActivity.this, getResources().getString(R.string.good), Toast.LENGTH_LONG).show();
-					finish();
+					//finish();
 				} else {
 					// Wrong combination, display pop-up dialog and stay on login screen
 					showErrorDialog(mail, passwd);
+
+					// Empty inputs
 					email.setText("");
 					password.setText("");
 				}
@@ -178,6 +143,48 @@ public class MainActivity extends AppCompatActivity {
 	        }
 	     });
 	    alertbd.show();
+	}
+
+	/*Cette méthode est appélée quand l'activité n'est plus visible par
+	* le user et tourne en background. Dans cette exemple, lorsque le user
+	* sera authentifié, cette activité va tourner en background et ainsi
+	* la methéde onPause sera appélée juste avant de quitter l'écran.
+	*/
+	@Override
+	protected void onPause() {
+		super.onPause();
+		Toast.makeText(MainActivity.this, "The main activity goes on pause...", Toast.LENGTH_LONG).show();
+	}
+
+	/*Cette méthode est appélée 1 milliseconde après que l'activité ira en
+	* backgroung.Par conséquent elle sera exécuté juste après l'exécution de
+	* la méthode OnPause().
+	*/
+	@Override
+	protected void onStop() {
+		super.onStop();
+		Toast.makeText(MainActivity.this, "The main activity stops just after goes on pause...", Toast.LENGTH_LONG).show();
+	}
+
+	/*Cette méthode est appélé quand l'activité principale est lancé et visible
+	* par le user. D'abord le méthode onCreate() sera exécutée, ensuite cette
+	* méthode. Elle sera aussi exécutée dès que l'activité est reprise par le
+	* user aprés une pause (onPause()).
+	* */
+	@Override
+	protected void onStart() {
+		super.onStart();
+		Toast.makeText(MainActivity.this, "The main activity starts...", Toast.LENGTH_LONG).show();
+	}
+
+	/*De même que onStart, cette méthode est appélée lorsque l'activité principale
+    * est lancée et visible à l'écran. Elle est exécuté après la méthode onStart. Elle est également
+    * lancée quand on retourne sur l'activité (après un onPause).
+    */
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Toast.makeText(MainActivity.this, "OnResume is called after the call of onStart...", Toast.LENGTH_LONG).show();
 	}
 	
 }

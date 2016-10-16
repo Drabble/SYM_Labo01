@@ -12,7 +12,7 @@ Le fichiers strings.xml est le fichier par défault et sera utilisé quand aucun
 Dans l’exemple fourni, sur le dialogue pop-up, nous affichons l’icône android.R.drawable.ic_dialog_alert, disponible dans le SDK Android mais qui n’est pas très bien adaptée visuellement à notre utilisation. Nous souhaitons la remplacer avec notre propre image, veuillez indiquer comment procéder. Dans quel(s) dossier(s) devons-nous ajouter cette image ? 
 Décrivez brièvement la logique derrière la gestion des ressources de type « image » sur Android. Info : Google met à disposition des icônes open source dans le style « Material Design » utilisé actuellement sur Android : https://design.google.com/icons/
 
-Afin de modifier le logo de l'application, on commence par télécharger l'icone. On la place ensuite dans le dossier correspendant (drawable) du projet. Finalement, il faut ouvrir le fichier AndroidManifest.xml et changer la propriété android:icon de l'objet application (android:icon="@drawable/ic_info_black_24dp"). 
+Afin de modifier le logo de l'application, on commence par télécharger l'icone. On la place ensuite dans le dossier correspendant (drawable) du projet. Finalement, il faut ouvrir le fichier AndroidManifest.xml et changer la propriété android:icon de l'élément application (android:icon="@drawable/ic_info_black_24dp"). 
 
 ## Question 3. 
 Lorsque le login est réussi, vous êtes censé chaîner une autre Activity en utilisant un Intent. Si je presse le bouton "Back" de l'interface Android, que puis-je constater ? Comment faire pour que l'application se comporte de manière plus logique ?
@@ -91,6 +91,48 @@ Afin de changer le layout en mode paysage, il faut faire un clique droit dans le
 ## Question 6. 
 Le layout de l’interface utilisateur de l’activité de login qui vous a été fourni a été réalisé avec un LinearLayout à la racine. Nous vous demandons de réaliser un layout équivalent utilisant cette fois-ci un RelativeLayout.
 
+Voilà le relative layout équivalent.
+```
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding = "10dp">
+
+
+    <EditText
+        android:hint="E-mail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/email"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:hint="Password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_below="@+id/email"
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignStart="@+id/email"
+        android:layout_marginTop="12dp"
+        android:id="@+id/password" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignStart="@+id/password"
+        android:id="@+id/buttOk" />
+
+</RelativeLayout>
+```
 
 ## Question 7. 
 Implémenter dans votre code les méthodes onCreate(), onStart(), onResume(), onPause(), onStop(), etc... qui marquent le cycle de vie d'une application Android, et tracez leur exécution. Décrivez brièvement à quelles occasions ces méthodes sont invoquées. Si vous aviez (par exemple) une connexion Bluetooth (ou des connexions bases de données, ou des capteurs activés) ouverte dans votre Activity, que faudrait-il peut-être faire, à votre avis (nous ne vous demandons pas de code ici) ?
@@ -99,7 +141,7 @@ Les explications quant à l'invocation des méthodes est décrite dans la javado
 
 Dans le cas de l'utilisation de base de données, on voudrait par exemple ouvrir la connection à la base de données dans le onStart et arrêter la connection dans le onStop. Avec des capteurs, ou aussi avec la base de données, on voudra peut-être démarrer le capteur dans le onResume et l'arrêter dans le cas d'un onPause.
 
-Avec une connexion bleutooth dans notre activité, tout d'abord nous devons ouvrir la connexion bleutooth lors de l'appel des méthode onCreate() ou onStart() afin de permettre par exemple à d'autres mobiles de communiquer avec notre activité. Ensuite lorsque l'activité n'est plus visible par l'utilisateur, nous devons enregistrer son état, couper la connexion dans la méthode onPause().Enfin lorsque l'activité sera à nouveau reprise, nous allons restaurer son état et établir une nouvelle connexion dans la méthode onResume().  
+Avec une connexion bluetooth dans notre activité, tout d'abord nous devons ouvrir la connexion bleutooth lors de l'appel des méthode onCreate() ou onStart() afin de permettre par exemple à d'autres mobiles de communiquer avec notre activité. Ensuite lorsque l'activité n'est plus visible par l'utilisateur, nous devons enregistrer son état, couper la connexion dans la méthode onPause().Enfin lorsque l'activité sera à nouveau reprise, nous allons restaurer son état et établir une nouvelle connexion dans la méthode onResume().  
 
 ## Question 8.
 Facultatif, s’il vous reste du temps, nous vous conseillons de le consacrer à mettre en place la résolution
