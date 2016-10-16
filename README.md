@@ -137,11 +137,13 @@ Voilà le relative layout équivalent.
 ## Question 7. 
 Implémenter dans votre code les méthodes onCreate(), onStart(), onResume(), onPause(), onStop(), etc... qui marquent le cycle de vie d'une application Android, et tracez leur exécution. Décrivez brièvement à quelles occasions ces méthodes sont invoquées. Si vous aviez (par exemple) une connexion Bluetooth (ou des connexions bases de données, ou des capteurs activés) ouverte dans votre Activity, que faudrait-il peut-être faire, à votre avis (nous ne vous demandons pas de code ici) ?
 
-Les explications quant à l'invocation des méthodes est décrite dans la javadoc de l'application.
+Les explications quant à l'invocation des méthodes de l'image ci-dessous est décrite dans la javadoc de l'application.
+
+![activity lifecycle](http://i.stack.imgur.com/IbhGg.png "Activity lifecycle")
 
 Dans le cas de l'utilisation de base de données, on voudrait par exemple ouvrir la connection à la base de données dans le onStart et arrêter la connection dans le onStop. Avec des capteurs, ou aussi avec la base de données, on voudra peut-être démarrer le capteur dans le onResume et l'arrêter dans le cas d'un onPause.
 
-Avec une connexion bluetooth dans notre activité, tout d'abord nous devons ouvrir la connexion bleutooth lors de l'appel des méthode onCreate() ou onStart() afin de permettre par exemple à d'autres mobiles de communiquer avec notre activité. Ensuite lorsque l'activité n'est plus visible par l'utilisateur, nous devons enregistrer son état, couper la connexion dans la méthode onPause().Enfin lorsque l'activité sera à nouveau reprise, nous allons restaurer son état et établir une nouvelle connexion dans la méthode onResume().  
+Avec une connexion bluetooth dans notre activité, tout d'abord nous devons ouvrir la connexion bluetooth lors de l'appel des méthode onCreate() ou onStart() afin de permettre par exemple à d'autres mobiles de communiquer avec notre activité. Ensuite lorsque l'activité n'est plus visible par l'utilisateur, nous devons enregistrer son état, couper la connexion dans la méthode onPause().Enfin lorsque l'activité sera à nouveau reprise, nous allons restaurer son état et établir une nouvelle connexion dans la méthode onResume().  
 
 ## Question 8.
 Facultatif, s’il vous reste du temps, nous vous conseillons de le consacrer à mettre en place la résolution
